@@ -8,8 +8,8 @@ var dbpasGeoLoc = {
 		localStoreAge: 300000,                 //local storage position cache
 		apiKey: ''                             //google maps api key
 	},
-	_complete: null,                         //geoloc event
-	_location: {},                           //geoloc location data
+	_complete: null,                               //geoloc event
+	_location: {},                                 //geoloc location data
 		
 	_extendObj: function(orig, ext) {
 		for (var key in ext) {
@@ -20,8 +20,8 @@ var dbpasGeoLoc = {
 	},
 		
 	_setup: function(arg1, arg2) {
-		if (arg1 && typeof arg1 === 'function') {      //callback w/ no config
-			arg1();
+		if (arg1 && typeof arg1 === 'function') {            //callback w/ no config
+			arg1();  
 		}else{
 			if (arg1 && typeof arg1 === 'object') {      //config with possible callback
 				this._extendObj(this.config, arg1);
@@ -86,7 +86,7 @@ var dbpasGeoLoc = {
 		
 	_getData: function(that) {
 		that._log('Geo Location started.');
-		navigator.geolocation.getCurrentPosition(function(position) {                                //get html geolocation and pass it to google api
+		navigator.geolocation.getCurrentPosition(function(position) {                                      //get html geolocation and pass it to google api
 			var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
 				geocoder = new google.maps.Geocoder();
 			geocoder.geocode({'latLng':latLng}, function(results, status) {                            //process google reverse geocoding results
@@ -94,10 +94,10 @@ var dbpasGeoLoc = {
 					//https://developers.google.com/maps/documentation/geocoding/#ReverseGeocoding
 					//results go from specific to less specific
 					results[that.config.resultsLevel].address_components.forEach(function(addressItem) {   //address item
-						addressItem.types.forEach(function(detail) {                                         //get address item type so we can key the address item in our object
-							if (detail != 'political') {                                                       //ignore political, not unique but can be referenced in our object's types array
+						addressItem.types.forEach(function(detail) {                                   //get address item type so we can key the address item in our object
+							if (detail != 'political') {                                           //ignore political, not unique but can be referenced in our object's types array
 								that._log(detail + ': ' + addressItem.long_name);
-								that._data(detail, addressItem);                                                 //store data in our geoloc object
+								that._data(detail, addressItem);                               //store data in our geoloc object
 							}
 						});
 					});
@@ -134,9 +134,9 @@ var dbpasGeoLoc = {
 		this._log('*dbpasGeoLoc*');
 		if (navigator.geolocation) {                          //html5 geolocation enabled
 			this._getLocalStore();
-			this._createEvent();                                //create geoloc event to notify when process finished
+			this._createEvent();                          //create geoloc event to notify when process finished
 			if (typeof this._location.timestamp === 'undefined' || (new Date - new Date(this._location.timestamp)) > this.config.localStoreAge) {
-				this._googleApi();                                //add google maps api to document
+				this._googleApi();                    //add google maps api to document
 			}else{
 				this._log('Geo Location retrieved from Local Storage.');
 				this._wrapUp();
