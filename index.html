@@ -22,10 +22,11 @@
       $(document).ready(function() {
         dbpasGeoLoc.init({
           debug: true,
+          enableHighAccuracy: true,
         }, function() {
           document.addEventListener('onDbpasGeoLoc', function(e) {
             var loc = e.detail;
-            $('#main_content').append('<p>' + loc.locality.long_name + ', ' + loc.administrative_area_level_1.short_name + ' ' + loc.postal_code.short_name + ' ' + loc.country.short_name + '</p>');
+            $('#main_content').html('<p>' + loc.locality.long_name + ', ' + loc.administrative_area_level_1.short_name + ' ' + loc.postal_code.short_name + ' ' + loc.country.short_name + '</p>');
           }, false);
         });
       });
@@ -50,7 +51,9 @@
         <hr>
 
         <section id="main_content">
-          
+          <p>
+            Retrieving Location…
+          </p>
         </section>
 
         <footer>
