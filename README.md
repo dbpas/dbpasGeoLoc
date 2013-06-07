@@ -39,7 +39,9 @@ Retrieves user's location using HTML Geolocation and Google Maps Geocoder.
 ###Results
 When results (JSON) object is returned from Google Maps Geocoder, it could contain any of the items listed below. If the item is available, it has three components. They are `short_name`, `long_name` and `types[]`.
 ```javascript
-dbpasGeoLoc.init({options}, function() {
+dbpasGeoLoc.init({
+  enableHighAccuracy: true
+  }, function() {
   document.addEventListener('onDbpasGeoLoc', function(e) {
     var location = e.detail;
     console.log(location.locality.long_name + ' ' + location.administrative_area_level_1.short_name + ' ' + location.country.short_name);
