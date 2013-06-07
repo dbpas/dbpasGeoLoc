@@ -25,7 +25,7 @@
         }, function() {
           document.addEventListener('onDbpasGeoLoc', function(e) {
             var loc = e.detail;
-            $('#main_content').append('<p>' + loc.locality.long_name + ', ' + loc.administrative_area_level_1.short_name + ' ' + loc.country.short_name + '</p>');
+            $('#main_content').append('<p>' + loc.locality.long_name + ', ' + loc.administrative_area_level_1.short_name + ' ' + loc.postal_code.short_name + ' ' + loc.country.short_name + '</p>');
           }, false);
         });
       });
