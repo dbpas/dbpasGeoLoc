@@ -13,6 +13,18 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="javascripts/dbpas.geoloc.js"></script>
     <title>dbpas :: dbpasGeoLoc</title>
+    <script>
+      $(document).ready(function() {
+        dbpasGeoLoc.init({
+          debug: true,
+        }, function() {
+          document.addEventListener('onDbpasGeoLoc', function(e) {
+            var loc = e.detail;
+            $('#main_content').append('<p>' + loc.locality.long_name + ', ' + loc.administrative_area_level_1.short_name + ' ' + loc.country.short_name + '</p>');
+          }, false);
+        });
+      });
+    </script>
   </head>
 
   <body>
