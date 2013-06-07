@@ -73,3 +73,6 @@ dbpasGeoLoc.init({
 - `point_of_interest` indicates a named point of interest. Typically, these "POI"s are prominent local entities that don't easily fit in another category such as "Empire State Building" or "Statue of Liberty."
 
 ###Tips
+####No Results
+- Enable `debug` and check your browsers console.
+- Did you allow your browser to share its location data?
