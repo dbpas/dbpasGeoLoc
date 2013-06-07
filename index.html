@@ -7,6 +7,11 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <style>
+      #main_content {
+        min-height: 250px;
+      }
+    </style>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -20,7 +25,12 @@
         }, function() {
           document.addEventListener('onDbpasGeoLoc', function(e) {
             var loc = e.detail;
-            $('#main_content').append('<p>' + loc.locality.long_name + ', ' + loc.administrative_area_level_1.short_name + ' ' + loc.country.short_name + '</p>');
+            $('#main_content').append('<ul />');
+            for (var key in loc) {
+              if (loc.hasOwnProperty(key)) {
+                $('#main_content ul').append('<li><span>' + key + ':</span><span>' + loc.key + '</span></li>');
+              }
+            }
           }, false);
         });
       });
