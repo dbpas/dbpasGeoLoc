@@ -28,7 +28,7 @@
             $('#main_content').append('<ul />');
             for (var key in loc) {
               if (loc.hasOwnProperty(key)) {
-                $('#main_content ul').append('<li><span>' + key + ':</span><span>' + loc[key] + '</span></li>');
+                $('#main_content ul').append('<li><span>' + key + ':</span><span>' + loc[key].long_name + '</span></li>');
               }
             }
           }, false);
