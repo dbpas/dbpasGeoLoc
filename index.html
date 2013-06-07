@@ -11,6 +11,10 @@
       #main_content {
         min-height: 250px;
       }
+      #main_content ul li span {
+        display: inline-block;
+        width: 200px;
+      }
     </style>
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -26,7 +30,12 @@
         }, function() {
           document.addEventListener('onDbpasGeoLoc', function(e) {
             var loc = e.detail;
-            $('#main_content').html('<p>' + loc.locality.long_name + ', ' + loc.administrative_area_level_1.short_name + ' ' + loc.postal_code.short_name + ' ' + loc.country.short_name + '</p>');
+            $('#main_content').html('<ul />');
+            for (var key in loc) {
+              if (loc.hasOwnProperty(key) && key != 'timestamp') {
+                $('#main_content ul').append('<li><span>' + key + ':</span>' + loc[key].short_name + '</li>');
+              }
+            }
           }, false);
         });
       });
